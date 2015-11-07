@@ -1,0 +1,33 @@
+﻿@model IEnumerable<TgdNet.Model.ItemModel>
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Item</th>
+        <th>Price</th>
+        <th>IsOnSale</th>
+        <th>Details</th>
+    </tr>
+    </thead>
+    <a asp-action="AddNewItem" asp-controller="Items">Create New Item</a>
+
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Name</td>
+            <td>@item.Price</td>
+            <td>@item.IsOnSale</td>
+            <td><a asp-controller="Items" asp-action="Details" asp-route-id="@item.Id">Details</a></td>
+        </tr>
+    }
+    </tbody>
+</table>
+@{ int counter = 0; }
+<div class="form-group">
+    <repeat count="4">
+            <button type="button" class="btn btn-danger">Hello @(counter++)</button>
+    </repeat>
+</div>

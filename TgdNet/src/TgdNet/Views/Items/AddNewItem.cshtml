@@ -1,0 +1,22 @@
+﻿@using TgdNet.ViewComponents
+@model TgdNet.Model.ItemModel
+
+@Component.Invoke(typeof(ItemsOnSaleViewComponent), 5)
+<form asp-controller="Items" asp-action="AddNewItem" method="POST">
+    <div class="form-group">
+        <label>Name</label>
+        <input type="text" asp-for="@Model.Name" class="form-control"/>
+    </div>
+
+    <div class="form-group">
+        <label>Price</label>
+        <input asp-for="@Model.Price" type="text" class="form-control"/>
+    </div>
+
+    <div class="form-group">
+        <label>IsOnSale</label>
+        <input asp-for="@Model.IsOnSale" type="checkbox" class="form-control"/>
+    </div>
+
+    <button type="submit" class="btn btn-success">Add new item</button>
+</form>
