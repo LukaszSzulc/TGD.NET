@@ -25,13 +25,17 @@ namespace TgdNet
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            var z = this.Configuration.GetChildren();
-            var x = this.Configuration["Data:DatabaseConnectionString:connectionString"];
-            app.Run(async context => await context.Response.WriteAsync(x.ToString()));
+            app.UseStaticFiles();
+            app.UseMvc(
+                builder =>
+                    {
+                        builder.MapRoute("default", "{controller=Home}/{action=index}/{id?}");
+                    });
             //app.UseWelcomePage();
             
         }
