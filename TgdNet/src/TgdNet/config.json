@@ -1,3 +1,11 @@
 {
-    
+  "Data": {
+    "DatabaseConnectionString": {
+        "connectionString" :  "DataSource = DESKTOP-227714N; Initial Catalog = Test; Integrated Security = SSPI"
+    }
+  },
+
+  "AppSettings": {
+        "SiteTitle": "ASP.NET MVC Music Store"
+    },
 }

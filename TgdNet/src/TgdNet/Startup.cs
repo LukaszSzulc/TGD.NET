@@ -19,7 +19,6 @@ namespace TgdNet
             var configuration =
                 new ConfigurationBuilder(appEnv.ApplicationBasePath).AddJsonFile("config.json", false)
                     .AddEnvironmentVariables();
-
             this.Configuration = configuration.Build();
         }
         public IConfiguration Configuration { get; set; }
@@ -28,8 +27,9 @@ namespace TgdNet
         {
         }
 
-        public void Configure(IApplicationBuilder app)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            var z = this.Configuration.GetChildren();
             var x = this.Configuration["Data:DatabaseConnectionString:connectionString"];
             app.Run(async context => await context.Response.WriteAsync(x.ToString()));
             //app.UseWelcomePage();
