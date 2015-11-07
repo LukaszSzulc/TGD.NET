@@ -1,0 +1,19 @@
+{
+  "profiles": {
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "Temporary": "Value",
+        "ASPNET_ENV": "Development"
+      }
+    },
+    "Web": {
+      "commandName": "Web",
+      "environmentVariables": {
+        "Temporary": "Value",
+        "ASPNET_ENV": "Production"
+      }
+    }
+  }
+}
