@@ -8,9 +8,12 @@ namespace TgdNet
     using Microsoft.AspNet.Builder;
     using Microsoft.AspNet.Hosting;
     using Microsoft.AspNet.Http;
+    using Microsoft.Data.Entity;
     using Microsoft.Dnx.Runtime;
     using Microsoft.Framework.Configuration;
     using Microsoft.Framework.DependencyInjection;
+
+    using TgdNet.Model;
 
     public class Startup
     {
@@ -26,6 +29,12 @@ namespace TgdNet
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddSingleton<ItemsContext>();
+            services.AddEntityFramework()
+                .AddSqlServer()
+                .AddDbContext<ItemsContext>(
+                    options =>
+                    options.UseSqlServer(this.Configuration["Data:DatabaseConnectionString:connectionString"]));
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

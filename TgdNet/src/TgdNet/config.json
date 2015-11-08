@@ -1,7 +1,7 @@
 {
   "Data": {
     "DatabaseConnectionString": {
-        "connectionString" :  "DataSource = DESKTOP-227714N; Initial Catalog = Test; Integrated Security = SSPI"
+        "connectionString" :  "Data Source = DESKTOP-227714N; Initial Catalog = Tgd.Net; Integrated Security = SSPI"
     }
   },
 

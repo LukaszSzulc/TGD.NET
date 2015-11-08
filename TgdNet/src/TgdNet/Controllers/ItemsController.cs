@@ -12,18 +12,18 @@ namespace TgdNet.Controllers
 
     public class ItemsController : Controller
     {
-        private static List<ItemModel> items;
+        private readonly ItemsContext context;
 
-        static ItemsController()
+        private List<ItemModel> items;
+
+        public ItemsController(ItemsContext context)
         {
-            items = new List<ItemModel>();
-            items.Add(
-                new ItemModel { Id = Guid.NewGuid().ToString("N"), IsOnSale = false, Name = "Bioshock", Price = 12.95m });
+            this.context = context;
         }
         // GET: /<controller>/
         public IActionResult Index()
         {
-            return View(items);
+            return View(this.context.Items.ToList());
         }
 
         public IActionResult AddNewItem()
@@ -32,10 +32,11 @@ namespace TgdNet.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddNewItem(ItemModel model)
+        public async Task<IActionResult> AddNewItem(ItemModel model)
         {
             model.Id = Guid.NewGuid().ToString("N");
-            items.Add(model);
+            this.context.Items.Add(model);
+            await this.context.SaveChangesAsync();
             return this.RedirectToAction("Index");
         }
 
