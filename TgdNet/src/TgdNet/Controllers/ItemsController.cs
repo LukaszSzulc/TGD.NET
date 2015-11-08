@@ -8,6 +8,8 @@ using Microsoft.AspNet.Mvc;
 
 namespace TgdNet.Controllers
 {
+    using Microsoft.Data.Entity;
+
     using TgdNet.Model;
 
     public class ItemsController : Controller
@@ -42,7 +44,8 @@ namespace TgdNet.Controllers
 
         public IActionResult Details(string id)
         {
-            return View();
+            var item = this.context.Items.FirstOrDefaultAsync(x => x.Id == id);
+            return View(item);
         }
     }
 }
