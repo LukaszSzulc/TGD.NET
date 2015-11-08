@@ -31,10 +31,10 @@ namespace TgdNet
             services.AddMvc();
             services.AddSingleton<ItemsContext>();
             services.AddEntityFramework()
-                .AddSqlServer()
+                .AddInMemoryDatabase()
                 .AddDbContext<ItemsContext>(
                     options =>
-                    options.UseSqlServer(this.Configuration["Data:DatabaseConnectionString:connectionString"]));
+                    options.UseInMemoryDatabase(true));
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
