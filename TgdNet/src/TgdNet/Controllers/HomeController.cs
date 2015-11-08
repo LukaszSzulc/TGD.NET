@@ -8,6 +8,7 @@ using Microsoft.AspNet.Mvc;
 
 namespace TgdNet.Controllers
 {
+    [Route("/api/[controller]")]
     public class HomeController
     {
         // GET: /<controller>/
@@ -16,7 +17,7 @@ namespace TgdNet.Controllers
             return new ViewResult { ViewName = "Index" };
         }
 
-        [HttpGet("/api/Home/")]
+        [HttpGet]
         public string Get()
         {
             return Guid.NewGuid().ToString("N");
