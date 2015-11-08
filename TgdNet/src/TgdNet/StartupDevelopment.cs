@@ -10,8 +10,7 @@
     {
         public StartupDevelopment(IHostingEnvironment env, IApplicationEnvironment appEnv)
         {
-            var configuration = new ConfigurationBuilder();
-            configuration.SetBasePath(appEnv.ApplicationBasePath)
+            var configuration = new ConfigurationBuilder(appEnv.ApplicationBasePath)
                 .AddJsonFile("config.json", false)
                 .AddEnvironmentVariables();
             this.Configuration = configuration.Build();
