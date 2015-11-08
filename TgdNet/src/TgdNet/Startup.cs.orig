@@ -8,17 +8,22 @@ namespace TgdNet
     using Microsoft.AspNet.Builder;
     using Microsoft.AspNet.Hosting;
     using Microsoft.AspNet.Http;
+<<<<<<< HEAD
     using Microsoft.Data.Entity;
+=======
     using Microsoft.AspNet.Mvc;
     using Microsoft.AspNet.Mvc.Xml;
+>>>>>>> AddMVC
     using Microsoft.Dnx.Runtime;
     using Microsoft.Framework.Configuration;
     using Microsoft.Framework.DependencyInjection;
 
+<<<<<<< HEAD
+    using TgdNet.Model;
+=======
     using TgdNet.Binders;
     using TgdNet.Filters;
-
-    using TgdNet.Model;
+>>>>>>> AddMVC
 
     public class Startup
     {
@@ -34,6 +39,14 @@ namespace TgdNet
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+<<<<<<< HEAD
+            services.AddSingleton<ItemsContext>();
+            services.AddEntityFramework()
+                .AddSqlServer()
+                .AddDbContext<ItemsContext>(
+                    options =>
+                    options.UseSqlServer(this.Configuration["Data:DatabaseConnectionString:connectionString"]));
+=======
             services.Configure<MvcOptions>(
                 options =>
                     {
@@ -42,12 +55,7 @@ namespace TgdNet
                         options.Filters.Add(typeof(SampleFilter));
                         options.OutputFormatters.Add(new XmlSerializerOutputFormatter());
                     });
-            services.AddSingleton<ItemsContext>();
-            services.AddEntityFramework()
-                .AddInMemoryDatabase()
-                .AddDbContext<ItemsContext>(
-                    options =>
-                    options.UseInMemoryDatabase(true));
+>>>>>>> AddMVC
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
