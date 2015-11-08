@@ -8,7 +8,7 @@ using Microsoft.AspNet.Mvc;
 
 namespace TgdNet.Controllers
 {
-    [Route("/api/[controller]")]
+    //[Route("/api/[controller]")]
     public class HomeController
     {
         // GET: /<controller>/
@@ -18,7 +18,7 @@ namespace TgdNet.Controllers
         }
 
         [Produces("application/json")]
-        [HttpGet]
+        [HttpGet("/api/[controller]")]
         public string Get()
         {
             return Guid.NewGuid().ToString("N");
