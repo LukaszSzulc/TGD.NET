@@ -17,6 +17,7 @@ namespace TgdNet.Controllers
             return new ViewResult { ViewName = "Index" };
         }
 
+        [Produces("application/json")]
         [HttpGet]
         public string Get()
         {
