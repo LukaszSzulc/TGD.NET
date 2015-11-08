@@ -8,9 +8,14 @@ namespace TgdNet
     using Microsoft.AspNet.Builder;
     using Microsoft.AspNet.Hosting;
     using Microsoft.AspNet.Http;
+    using Microsoft.AspNet.Mvc;
+    using Microsoft.AspNet.Mvc.Xml;
     using Microsoft.Dnx.Runtime;
     using Microsoft.Framework.Configuration;
     using Microsoft.Framework.DependencyInjection;
+
+    using TgdNet.Binders;
+    using TgdNet.Filters;
 
     public class Startup
     {
@@ -26,6 +31,14 @@ namespace TgdNet
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.Configure<MvcOptions>(
+                options =>
+                    {
+                        options.RespectBrowserAcceptHeader = true;
+                        options.ModelBinders.Add(new IPrincipalBinder());
+                        options.Filters.Add(typeof(SampleFilter));
+                        options.OutputFormatters.Add(new XmlSerializerOutputFormatter());
+                    });
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
