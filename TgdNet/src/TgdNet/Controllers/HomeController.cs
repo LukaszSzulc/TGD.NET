@@ -8,6 +8,14 @@ using Microsoft.AspNet.Mvc;
 
 namespace TgdNet.Controllers
 {
+    using System.Security.Principal;
+
+    using Microsoft.CodeAnalysis.CSharp.Syntax;
+
+    using TgdNet.Binders;
+    using TgdNet.Models;
+
+    //[Route("/api/[controller]")]
     public class HomeController
     {
         // GET: /<controller>/
@@ -16,10 +24,24 @@ namespace TgdNet.Controllers
             return new ViewResult { ViewName = "Index" };
         }
 
-        [HttpGet("/api/Home/")]
-        public string Get()
+        [HttpGet("/api/[controller]")]
+        public SampleModel Get()
         {
-            return Guid.NewGuid().ToString("N");
+            var sampleModel = new SampleModel();
+            sampleModel.SampleHeader = "SampleHeader";
+            sampleModel.SortOrder = "1";
+            return sampleModel;
+        }
+
+        [HttpPost("/api/[controller]/HederMapping")]
+        public void HeaderMapping(SampleModel model)
+        {
+            
+        }
+
+        public void Principal([ModelBinder(BinderType = typeof(IPrincipalBinder),Name = "Principal")] IIdentity identity)
+        {
+            
         }
 
 
